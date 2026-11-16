@@ -1,0 +1,13 @@
+# Arquivos originais do TSE (MG inteiro, até 2,9 GB) — acima do limite do GitHub.
+# O recorte bruto de São João del-Rei fica versionado em dados_brutos/.
+bweb_*_MG_*.csv
+eleitorado_local_votacao_*_MG.csv
+*.zip
+
+# Jupyter / Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/secrets.toml
