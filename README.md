@@ -5,6 +5,8 @@ Tecnologias para Data Science — DCOMP/UFSJ — Prof.ª Carolina Xavier
 
 Distribuição espacial dos votos para Presidente (1º e 2º turnos de 2026) por local de votação e seção eleitoral em São João del-Rei, com `pandas`, `geopandas`, `folium` e um painel em `streamlit`.
 
+Link deploy: [eleicoes2026-saojoaodelrei.streamlit.app](eleicoes2026-saojoaodelrei.streamlit.app)
+
 ## Resultados
 
 | Turno | Flávio Bolsonaro (PL) | Lula (PT) | Outros |
