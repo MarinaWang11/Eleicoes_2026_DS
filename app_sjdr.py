@@ -1,9 +1,4 @@
 """Painel Streamlit — Mapeamento Eleitoral 2026, São João del-Rei (MG).
-
-Uso (roda tudo):  streamlit run app_sjdr.py
-
-Se os dados processados ou os mapas ainda não existirem, o app executa o
-notebook sjdr.ipynb (tratamento dos dados do TSE + geração dos mapas) antes de abrir.
 """
 from pathlib import Path
 
@@ -29,7 +24,6 @@ st.set_page_config(page_title="Mapa Eleitoral 2026 - São João del-Rei", page_i
 
 
 def executar_notebook():
-    """Executa sjdr.ipynb com o mesmo Python que roda o Streamlit e salva as saídas."""
     import nbformat
     from jupyter_client import KernelManager
     from jupyter_client.kernelspec import KernelSpecManager
@@ -43,8 +37,13 @@ def executar_notebook():
     nbformat.write(nb, NOTEBOOK)
 
 
+# No Streamlit Community Cloud o repositório fica em /mount/src: lá os dados e mapas já
+# vêm prontos do GitHub, então o botão de reprocessar só aparece na execução local.
+NA_NUVEM = str(RAIZ).startswith("/mount/src")
+
 faltando = [p.name for p in ARQUIVOS_NECESSARIOS if not p.exists()]
-reprocessar = st.sidebar.button("🔄 Reprocessar (executar notebook)", help="Executa sjdr.ipynb novamente")
+reprocessar = False if NA_NUVEM else st.sidebar.button(
+    "🔄 Reprocessar (executar notebook)", help="Executa sjdr.ipynb novamente")
 if faltando or reprocessar:
     motivo = f"arquivos ausentes: {', '.join(faltando)}" if faltando else "solicitado pelo usuário"
     with st.spinner(f"Executando o notebook sjdr.ipynb ({motivo})... pode levar alguns minutos."):
